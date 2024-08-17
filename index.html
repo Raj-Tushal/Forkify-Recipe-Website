@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- css -->
-     <!-- <link rel="stylesheet" href="style.css"> -->
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <div class="container">
-    <div class="imageDisplay"></div>
-    <!-- <div class="imageDisplay2"></div>
-    <div class="imageDisplay3"></div>
-    <div class="imageDisplay4"></div>
-    <div class="imageDisplay4"></div>
-    <div class="imageDisplay5"></div> -->
+      <!-- top -->
+      <div class="top">
+        <!-- topLeft -->
+        <div class="logo"><img src="./assets/logo.png" class="logoImg" alt=""></div>
+        <!-- topMiddle -->
+        <div class="topMiddle">
+          <input
+            type="text"
+            class="searchBar"
+            placeholder="pizza, burger, chicken......"
+          />
+          <button class="searchBtn">search</button>
+          <!-- topLeft -->
+        </div>
+        <!-- topLeft -->
+        <!-- Add -->
+        <ul>
+          <li><i class="fa-solid fa-pen-to-square"></i>Add Recipe</li>
+          <li><i class="fa-solid fa-bookmark"></i>Bookmark</li>
+        </ul>
+      </div>
+      <div class="bottom">
+        <!-- bottomLeft -->
+        <div class="bottomLeft">
+          <!-- bottom-left-left -->
+          <div class="imageDisplay"></div>
+          <!-- bottom-left-right -->
+          <!-- <div class="bottomLeftRight"> -->
+            <h4 class="title"></h4>
+            <!-- <h3 class="author">Publisher: <span class="Publisher"></span></h3> -->
+          <!-- </div> -->
+        </div>
+        <!-- bottomRight -->
+        <div class="bottomRight">
+            
+            <div class="uperwala"> Welcome to Forkify! 🍴 <br> </div>
 
+            Explore a variety of delicious recipes with just a few clicks. From savory pizzas to mouth-watering burgers, Forkify brings you a curated selection of dishes, complete with stunning images. Simply search, cook, and enjoy your favorite meals with ease.
+            
+            
+            </div>
+      </div>
+    </div>
 
-
-<!-- searchBar -->
-<input type="text" class="searchBar"> 
- <button class="searchBtn">search</button>
-<h4 class="title"></h4>
-<h3 class="author">Publisher: <span class="Publisher"></span></h3>
-</div>
     <!-- js -->
-
-     <!-- <script src="main.js"></script> -->
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>

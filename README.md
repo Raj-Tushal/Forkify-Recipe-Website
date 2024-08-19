@@ -1,3 +1,5 @@
-![forkify 2](https://github.com/user-attachments/assets/5a8f5a2a-b2bc-4f39-84e4-ce98cb18a848)
-![forkify 1](https://github.com/user-attachments/assets/1c970573-ba02-422c-aaa2-12aa83a6e9f9)
+![forkify 1](https://github.com/user-attachments/assets/a23bf98b-8a05-4a7d-836e-97bac9c5b161)
+![forkify 2](https://github.com/user-attachments/assets/5238a7d9-a2d8-442c-84af-3da2113a7fff)
+
+
 

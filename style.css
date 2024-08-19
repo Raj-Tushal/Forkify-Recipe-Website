@@ -104,6 +104,7 @@
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px;
+    border-radius: 20px;
     gap: 45px;
   }
   

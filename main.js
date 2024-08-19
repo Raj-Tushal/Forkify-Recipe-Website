@@ -1,98 +1,56 @@
-// const imageDisplay1 = document.querySelector(".imageDisplay1")
-// const imageDisplay2 = document.querySelector(".imageDisplay2")
-// const imageDisplay3 = document.querySelector(".imageDisplay3")
-// const imageDisplay4 = document.querySelector(".imageDisplay4")
-// const imageDisplay5 = document.querySelector(".imageDisplay5")
-
-// const searchBar = document.querySelector(".searchBar")
-// const searchBtn = document.querySelector(".searchBtn")
-// const title = document.querySelector(".title")
-// const publisher = document.querySelector(".Publisher")
-
-// async function checkForRecipes(item) {
-//     const response = await fetch("https://forkify-api.herokuapp.com/api/v2/recipes?search="+item);
-//     var data = await response.json();
-
-//     // imageDisplay.innerHTML = "";
-//     // title.innerHTML = "";
-//     // publisher.innerHTML = "";
-
-//     for (let i=0;i<=4; i++ ) {
-//         //   console.log(data.data.recipes[i]); 
-//         console.log(data.data.recipes[i].title);
-//         console.log(data.data.recipes[i].publisher);
-//         console.log(data.data.recipes[i].image_url);
-//         // for lop
-//         imageDisplay1.innerHTML = `<img src="${data.data.recipes[0].image_url}" alt="Recipe Image">`;
-//         imageDisplay2.innerHTML = `<img src="${data.data.recipes[1].image_url}" alt="Recipe Image">`;
-//         imageDisplay3.innerHTML = `<img src="${data.data.recipes[2].image_url}" alt="Recipe Image">`;
-//         imageDisplay4.innerHTML = `<img src="${data.data.recipes[3].image_url}" alt="Recipe Image">`;
-//         imageDisplay5.innerHTML = `<img src="${data.data.recipes[4].image_url}" alt="Recipe Image">`;
-//         title.innerHTML = data.data.recipes[i].title;
-//         publisher.innerHTML=data.data.recipes[i].publisher;
-//         // description
-        
-//     }
-    
-//     }
-
-
-
-
-//     // side pe rakha code
-// //     console.log(data.data.recipes[1].title);
-// //     console.log(data.data.recipes[1].publisher);
-// //     // for lop
-// //     imageDisplay.innerHTML = `<img src="${data.data.recipes[0].image_url}" alt="Recipe Image">`;
-// //     title.innerHTML = data.data.recipes[1].title;
-// //     publisher.innerHTML=data.data.recipes[1].publisher;
-// //     // description
-    
-// // }
-
-
-
-// searchBtn.addEventListener("click",()=>{
-//     checkForRecipes(searchBar.value);
-// })
-
-
-
-
 const imageDisplay = document.querySelector(".imageDisplay");
 const searchBar = document.querySelector(".searchBar");
 const searchBtn = document.querySelector(".searchBtn");
-const title = document.querySelector(".title");
-const publisher = document.querySelector(".Publisher");
+const recipe = document.querySelector(".recipe");
 
 async function checkForRecipes(item) {
     const response = await fetch("https://forkify-api.herokuapp.com/api/v2/recipes?search=" + item);
-    var data = await response.json();
-
-// test
-console.log(data.data)
+    const data = await response.json();
 
     // Clear previous content
     imageDisplay.innerHTML = "";
-    title.innerHTML = "";
-    // publisher.innerHTML = "";
 
-    for (let i = 0; i < 15; i++) {
-        // Create new elements for each recipe
+    for (let i = 0; i < 17; i++) { 
+        const recipeContainer = document.createElement("div"); // Create a container for each recipe
         const imgElement = document.createElement("img");
         const titleElement = document.createElement("h3");
-        // const publisherElement = document.createElement("p");
 
         // Set the attributes and content
         imgElement.src = data.data.recipes[i].image_url;
         imgElement.alt = "Recipe Image";
         titleElement.textContent = data.data.recipes[i].title;
-        // publisherElement.textContent = data.data.recipes[i].publisher;
 
-        // Append the new elements to the imageDisplay container
-        imageDisplay.appendChild(imgElement);
-        title.appendChild(titleElement);
-        // publisher.appendChild(publisherElement);
+        // Append the image and title to the recipe container
+        recipeContainer.appendChild(imgElement);
+        recipeContainer.appendChild(titleElement);
+
+        // Append the recipe container to the imageDisplay container
+        imageDisplay.appendChild(recipeContainer);
+
+        // Add click event listener to each image
+        imgElement.addEventListener("click", async () => {
+            const recipeId = data.data.recipes[i].id;
+            console.log("Clicked Recipe ID:", recipeId); // Log the recipe ID to ensure the click event is firing
+
+            // Fetch recipe details using the ID
+            const recipeResponse = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`);
+            const recipeData = await recipeResponse.json();
+
+            // Display detailed recipe information
+            recipe.innerHTML = `
+                <h2>${recipeData.data.recipe.title}</h2>
+                <p><strong>Publisher:</strong> ${recipeData.data.recipe.publisher}</p>
+                <p><i class="fa-regular fa-clock"></i><strong>Cooking Time:</strong> ${recipeData.data.recipe.cooking_time} minutes</p>
+                <p><i class="fa-solid fa-person"></i><strong>Servings:</strong> ${recipeData.data.recipe.servings}</p>
+                <img src="${recipeData.data.recipe.image_url}" alt="Recipe Image">
+                <p><strong>Ingredients:</strong></p>
+                <ul class="ingredients-list">
+                    ${recipeData.data.recipe.ingredients.map(ingredient => `
+                        <li><i class="fa fa-check"></i> ${ingredient.quantity || ''} ${ingredient.unit || ''} ${ingredient.description}</li>
+                    `).join('')}
+                </ul>
+            `;
+        });
     }
 }
 

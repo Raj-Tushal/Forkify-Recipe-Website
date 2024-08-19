@@ -56,4 +56,10 @@ async function checkForRecipes(item) {
 
 searchBtn.addEventListener("click", () => {
     checkForRecipes(searchBar.value);
-});
+  });
+  
+  searchBar.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      checkForRecipes(searchBar.value);
+    }
+  });
